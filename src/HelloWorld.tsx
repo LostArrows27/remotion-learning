@@ -11,6 +11,7 @@ import { Subtitle } from "./HelloWorld/Subtitle";
 import { Title } from "./HelloWorld/Title";
 import { z } from "zod";
 import { zColor } from "@remotion/zod-types";
+import TestComponent from "./TestComponent";
 
 export const myCompSchema = z.object({
   titleText: z.string(),
@@ -57,20 +58,28 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
 
   // A <AbsoluteFill> is just a absolutely positioned <div>!
   return (
-    <AbsoluteFill style={{ backgroundColor: "white" }}>
-      <AbsoluteFill style={{ opacity }}>
-        <AbsoluteFill style={{ transform: `translateY(${logoTranslation}px)` }}>
-          <Logo logoColor1={logoColor1} logoColor2={logoColor2} />
+    <>
+      <Sequence durationInFrames={150}>
+        <AbsoluteFill style={{ backgroundColor: "white" }}>
+          <AbsoluteFill style={{ opacity }}>
+            <AbsoluteFill
+              style={{ transform: `translateY(${logoTranslation}px)` }}
+            >
+              <Logo logoColor1={logoColor1} logoColor2={logoColor2} />
+            </AbsoluteFill>
+            {/* Sequences can shift the time for its children! */}
+            <Sequence from={35}>
+              <Title titleText={propOne} titleColor={propTwo} />
+            </Sequence>
+            {/* The subtitle will only enter on the 75th frame. */}
+            <Sequence from={75}>
+              <Subtitle />
+            </Sequence>
+          </AbsoluteFill>
         </AbsoluteFill>
-        {/* Sequences can shift the time for its children! */}
-        <Sequence from={35}>
-          <Title titleText={propOne} titleColor={propTwo} />
-        </Sequence>
-        {/* The subtitle will only enter on the 75th frame. */}
-        <Sequence from={75}>
-          <Subtitle />
-        </Sequence>
-      </AbsoluteFill>
-    </AbsoluteFill>
+      </Sequence>
+
+      <TestComponent opacity={0} />
+    </>
   );
 };
