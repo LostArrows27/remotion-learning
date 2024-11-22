@@ -24,6 +24,7 @@
     "typescript": "5.5.4"
   },
   "scripts": {
+    "start": "remotion studio",
     "dev": "remotion studio",
     "build": "remotion bundle",
     "render-cli": "npx remotion render --props=./props.json",

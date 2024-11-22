@@ -11,3 +11,5 @@ Config.setOverwriteOutput(true);
 Config.overrideWebpackConfig((currentConfiguration) => {
   return enableTailwind(currentConfiguration);
 });
+
+Config.setChromiumOpenGlRenderer("angle");
