@@ -26,6 +26,8 @@
   "scripts": {
     "dev": "remotion studio",
     "build": "remotion bundle",
+    "render-cli": "npx remotion render --props=./props.json",
+    "render-server": "npx tsx render.ts",
     "upgrade": "remotion upgrade",
     "lint": "eslint src --ext ts,tsx,js,jsx && tsc"
   },
